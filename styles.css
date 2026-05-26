@@ -310,7 +310,7 @@ a:hover { color: var(--teal-hover); }
   background: var(--glass); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border); border-left: 3px solid var(--accent);
   border-radius: 0 var(--glass-r) var(--glass-r) 0;
-  padding: var(--s-xl) var(--s-lg); max-width: var(--w-narrow); margin-inline: auto;
+  padding: var(--s-lg) var(--s-md);
   position: relative; box-shadow: var(--shadow-card);
 }
 .testimonial::before {
@@ -318,8 +318,16 @@ a:hover { color: var(--teal-hover); }
   font: 7rem var(--f-body); line-height: 1; color: var(--accent); opacity: 0.12; pointer-events: none;
 }
 .testimonial-text { margin-bottom: var(--s-md); position: relative; z-index: 1; }
+.testimonial-meta { display: flex; align-items: center; gap: var(--s-sm); }
+.testimonial-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent); color: var(--text-bright);
+  font: 600 0.75rem var(--f-head); display: flex; align-items: center; justify-content: center;
+}
 .testimonial-author { font: 500 0.875rem var(--f-head); color: var(--text-bright); }
 .testimonial-role   { font: 400 0.8125rem var(--f-head); color: var(--text-muted); }
+.testimonial-grid { display: grid; grid-template-columns: 1fr; gap: var(--s-md); }
+@media (min-width: 60em) { .testimonial-grid { grid-template-columns: repeat(2, 1fr); } }
 
 
 /* --- CTA -------------------------------------------------- */
