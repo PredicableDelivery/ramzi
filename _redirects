@@ -1,0 +1,32 @@
+# Pretty URLs — serve .html files without extension
+/about          /about.html         200
+/contact        /contact.html       200
+/privacy        /privacy.html       200
+
+# Service pages
+/services/intellectual-property  /services/intellectual-property.html  200
+/services/company-setup          /services/company-setup.html          200
+/services/contract-drafting      /services/contract-drafting.html      200
+/services/media-entertainment    /services/media-entertainment.html    200
+/services/legal-consultancy      /services/legal-consultancy.html      200
+/services/legal-translation      /services/legal-translation.html      200
+/services/document-review        /services/document-review.html        200
+
+# Convenience redirects
+/services       /services/intellectual-property  302
+/expertise      /services/intellectual-property  301
+
+# Trailing slash normalisation (redirect with-slash to without)
+/about/         /about          301
+/contact/       /contact        301
+/privacy/       /privacy        301
+/services/intellectual-property/  /services/intellectual-property  301
+/services/company-setup/          /services/company-setup          301
+/services/contract-drafting/      /services/contract-drafting      301
+/services/media-entertainment/    /services/media-entertainment    301
+/services/legal-consultancy/      /services/legal-consultancy      301
+/services/legal-translation/      /services/legal-translation      301
+/services/document-review/        /services/document-review        301
+
+# 404 fallback
+/*              /404.html       404

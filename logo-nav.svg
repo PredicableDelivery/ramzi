@@ -1,0 +1,14 @@
+<svg viewBox="215 110 250 280" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>AZ Legal Solutions</title>
+
+<!-- AZ monogram – off-white for dark backgrounds -->
+<path d="M 225 290 L 288 120 L 302 120 L 365 290 L 335 290 L 295 178 L 255 290 Z" fill="#F0F4F2"/>
+<path d="M 345 120 L 455 120 L 455 145 L 370 265 L 455 265 L 455 290 L 345 290 L 345 265 L 430 145 L 345 145 Z" fill="#F0F4F2"/>
+
+<!-- Teal structural line -->
+<rect x="225" y="306" width="230" height="2" fill="#5A9A8A"/>
+
+<!-- Brand text in teal, justified to monogram width -->
+<text x="225" y="348" font-family="'DM Sans', sans-serif" font-size="26" font-weight="500" fill="#5A9A8A" textLength="230" lengthAdjust="spacing">LEGAL</text>
+<text x="225" y="378" font-family="'DM Sans', sans-serif" font-size="18" font-weight="400" fill="#5A9A8A" textLength="230" lengthAdjust="spacing">SOLUTIONS</text>
+</svg>
