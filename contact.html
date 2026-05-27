@@ -110,7 +110,7 @@
             <div class="card mb-md">
               <p class="type-label mb-xs">Book a Consultation</p>
               <p class="type-body mb-md">Schedule a 30-minute initial consultation at a time that works across time zones.</p>
-              <a href="#" class="btn btn-primary" aria-label="Schedule a consultation via Calendly">Schedule a Time</a>
+              <a href="https://calendly.com/az-legalsolutions" target="_blank" rel="noopener" class="btn btn-primary">Schedule a Time</a>
             </div>
 
             <div class="card">
@@ -123,7 +123,11 @@
           <!-- Contact Form -->
           <div class="reveal">
             <h3 class="type-subsection mb-lg">Send an enquiry</h3>
-            <div role="form" aria-label="Contact enquiry form">
+            <form action="https://api.web3forms.com/submit" method="POST" aria-label="Contact enquiry form">
+              <input type="hidden" name="access_key" value="64fdd258-cfdc-4c2d-9088-bc2275f3bf22">
+              <input type="hidden" name="subject" value="New enquiry from AZ Legal Solutions website">
+              <input type="hidden" name="redirect" value="https://az-legalsolutions.co.uk/contact.html?sent=true">
+              <input type="checkbox" name="botcheck" class="sr-only" style="display:none">
               <div class="form-group">
                 <label for="contact-name" class="form-label">Full name</label>
                 <input type="text" id="contact-name" name="name" class="form-input" autocomplete="name" required>
@@ -149,7 +153,7 @@
               </div>
               <button type="submit" class="btn btn-primary" aria-label="Submit your enquiry to AZ Legal Solutions">Send Enquiry</button>
               <p class="type-small mt-sm">By submitting this form, you agree to our <a href="privacy.html">privacy policy</a>. Your information will be handled with strict confidentiality.</p>
-            </div>
+            </form>
           </div>
 
         </div>
