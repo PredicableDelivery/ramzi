@@ -82,7 +82,7 @@
 
   /* Space */
   --s-xs: 8px;  --s-sm: 16px;  --s-md: 24px;  --s-lg: 48px;
-  --s-xl: 64px; --s-2xl: 80px; --s-sec: 100px;
+  --s-xl: 64px; --s-2xl: 80px; --s-sec: 120px;
 
   /* Radius */
   --r-sm: 8px;  --r-md: 16px;
@@ -137,7 +137,7 @@ a:hover { color: var(--teal-hover); }
 .type-card-title{ font: 600 1.125rem/1.4 var(--f-head); color: var(--text-bright); }
 .type-body      { font: 400 1rem/1.7 var(--f-body); color: var(--text-body); }
 .type-body-large{ font: 400 1.125rem/1.75 var(--f-body); color: var(--text-body); }
-.type-small     { font: 400 0.9375rem/1.7 var(--f-body); color: var(--text-body); }
+.type-small     { font: 400 0.9375rem/1.7 var(--f-body); color: var(--text-bright); opacity: 0.85; }
 .type-label     { font: 600 0.6875rem/1 var(--f-head); color: var(--text-label); text-transform: uppercase; letter-spacing: 0.16em; }
 .type-nav       { font: 500 0.9375rem/1 var(--f-head); text-transform: uppercase; letter-spacing: 0.05em; }
 .type-stat      { font: 600 clamp(2rem, 4vw, 2.75rem)/1 var(--f-head); color: var(--accent); letter-spacing: -0.02em; }
@@ -220,8 +220,8 @@ a:hover { color: var(--teal-hover); }
 
 /* --- HERO ------------------------------------------------- */
 .hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: flex-end;
+  position: relative; min-height: 80vh;
+  display: flex; align-items: center;
   padding-top: 120px; overflow: hidden;
   background: var(--bg-hero);
 }
@@ -248,7 +248,7 @@ a:hover { color: var(--teal-hover); }
 }
 .hero-content {
   position: relative; z-index: 3; width: 100%; max-width: var(--w-max);
-  margin-inline: auto; padding: var(--s-xl) var(--s-md) var(--s-sec);
+  margin-inline: auto; padding: var(--s-lg) var(--s-md) var(--s-lg);
 }
 .hero-label { margin-bottom: var(--s-md); padding-left: var(--s-sm); border-left: 3px solid var(--accent); }
 .hero-title { max-width: 780px; margin-bottom: var(--s-md); }
@@ -301,7 +301,8 @@ a:hover { color: var(--teal-hover); }
   font: 700 3rem var(--f-head); color: var(--accent); opacity: 0.10;
   position: absolute; top: var(--s-sm); right: var(--s-md); line-height: 1; pointer-events: none;
 }
-.card-title { margin-bottom: var(--s-sm); }
+.card-title { margin-bottom: var(--s-xs); }
+.card-audience { margin-bottom: var(--s-sm); color: var(--teal); font-size: 0.625rem; opacity: 0.8; }
 .card-text  { margin-bottom: var(--s-md); }
 .card-link  { font: 500 0.8125rem var(--f-head); color: var(--teal); display: inline-flex; align-items: center; gap: var(--s-xs); min-height: 48px; }
 .card-link:hover { color: var(--text-bright); }
@@ -500,6 +501,30 @@ a:hover { color: var(--teal-hover); }
   .section::before, .section::after { display: none; }
 }
 
+
+/* --- PROFILE STRIP ---------------------------------------- */
+.profile-strip {
+  background: var(--bg-recessed);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative; overflow: hidden;
+}
+.profile-strip::before {
+  content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,154,138,0.06) 0%, transparent 70%);
+  top: -200px; left: -100px; pointer-events: none;
+}
+.profile-strip::after { display: none; }
+.profile-inner {
+  display: grid; grid-template-columns: 1fr; gap: var(--s-lg);
+  text-align: center; position: relative; z-index: 1;
+}
+.profile-bio { max-width: 640px; margin-inline: auto; }
+.profile-name { font: 500 1.25rem var(--f-head); color: var(--text-bright); margin-bottom: var(--s-xs); }
+.profile-title { font: 400 0.875rem var(--f-head); color: var(--teal); margin-bottom: var(--s-md); }
+.profile-text { margin-bottom: var(--s-md); }
+.profile-credentials { display: flex; flex-wrap: wrap; gap: var(--s-xs); justify-content: center; }
+
   </style>
 
   <!-- Structured Data -->
@@ -615,7 +640,7 @@ a:hover { color: var(--teal-hover); }
       <h1 id="hero-heading" class="type-hero hero-title reveal">Legal expertise operating across UK and international jurisdictions</h1>
       <p class="type-body-large hero-subtitle reveal">Clear, strategic, and culturally fluent advice across intellectual property, corporate law, commercial contracts, and cross-border legal matters. In English and French.</p>
       <div class="hero-cta-group reveal">
-        <a href="contact.html" class="btn btn-primary" aria-label="Book a consultation with Ramzi El Azzi">Book a Consultation</a>
+        <a href="https://calendly.com/az-legalsolutions" target="_blank" rel="noopener" class="btn btn-primary">Book a Consultation</a>
         <a href="about.html" class="btn btn-outline">About Us</a>
       </div>
     </div>
@@ -636,8 +661,8 @@ a:hover { color: var(--teal-hover); }
 
           <a href="legal-consultancy.html" class="card card-full reveal">
             <div>
-              <span class="card-number">01</span>
               <h3 class="type-card-title card-title">Legal Consultancy</h3>
+              <p class="type-label card-audience">For businesses needing strategic legal counsel without in-house overhead</p>
             </div>
             <div>
               <p class="type-small card-text">Strategic external counsel across corporate, commercial, employment, regulatory, and private international law. Reliable legal input without the overhead of an in-house team, adapted to the scope and pace of your work.</p>
@@ -646,43 +671,43 @@ a:hover { color: var(--teal-hover); }
           </a>
 
           <a href="intellectual-property.html" class="card reveal">
-            <span class="card-number">02</span>
             <h3 class="type-card-title card-title">Intellectual Property</h3>
+            <p class="type-label card-audience">For creators, brands, and innovators protecting their work</p>
             <p class="type-small card-text">Trademark registration, copyright protection, patent strategy, and licensing across UK and international systems.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
 
           <a href="company-setup.html" class="card reveal">
-            <span class="card-number">03</span>
             <h3 class="type-card-title card-title">Company Setup and Corporate Governance</h3>
+            <p class="type-label card-audience">For founders and directors structuring or scaling a business</p>
             <p class="type-small card-text">Company formation, shareholders' agreements, directors' duties, regulatory compliance, and cross-border structuring.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
 
           <a href="contract-drafting.html" class="card reveal">
-            <span class="card-number">04</span>
             <h3 class="type-card-title card-title">Contract Drafting and Review</h3>
+            <p class="type-label card-audience">For businesses entering agreements with confidence</p>
             <p class="type-small card-text">Commercial agreements, licensing deals, employment contracts, NDAs, and dispute analysis in plain English.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
 
           <a href="media-entertainment.html" class="card reveal">
-            <span class="card-number">05</span>
             <h3 class="type-card-title card-title">Media and Entertainment Law</h3>
+            <p class="type-label card-audience">For artists, producers, labels, and live event organisers</p>
             <p class="type-small card-text">Artist agreements, recording contracts, publishing deals, live event legal support, and music rights management.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
 
           <a href="legal-translation.html" class="card reveal">
-            <span class="card-number">06</span>
             <h3 class="type-card-title card-title">Legal Translation</h3>
+            <p class="type-label card-audience">For clients needing certified legal documents across languages</p>
             <p class="type-small card-text">Legally precise translation across English, French, and Arabic for contracts, court documents, and corporate filings.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
 
           <a href="document-review.html" class="card reveal">
-            <span class="card-number">07</span>
             <h3 class="type-card-title card-title">Document Review and eDiscovery</h3>
+            <p class="type-label card-audience">For law firms and corporates managing complex disclosure</p>
             <p class="type-small card-text">Professional document review using Relativity for complex litigation, with senior legal analysis.</p>
             <span class="card-link" aria-hidden="true">Learn more</span>
           </a>
@@ -697,14 +722,14 @@ a:hover { color: var(--teal-hover); }
     <!-- Stats -->
     <section class="stats-section section" aria-labelledby="stats-heading">
       <div class="wrap">
-        <h2 id="stats-heading" class="sr-only">Firm credentials at a glance</h2>
+        <h2 id="stats-heading" class="type-label mb-lg text-center reveal">Firm Credentials</h2>
         <div class="stats-grid">
           <div class="stat-item reveal">
             <span class="type-stat">15+</span>
             <span class="type-label">Years of International Practice</span>
           </div>
           <div class="stat-item reveal">
-            <span class="type-stat">3</span>
+            <span class="type-stat">2</span>
             <span class="type-label">Languages (EN / FR)</span>
           </div>
           <div class="stat-item reveal">
@@ -784,6 +809,25 @@ a:hover { color: var(--teal-hover); }
       </div>
     </section>
 
+    <!-- Profile -->
+    <section class="profile-strip section" aria-labelledby="profile-heading">
+      <div class="wrap">
+        <div class="profile-inner reveal">
+          <div class="profile-bio">
+            <h2 id="profile-heading" class="profile-name">Ramzi El Azzi</h2>
+            <p class="profile-title">Founder &amp; Principal Solicitor, AZ Legal Solutions</p>
+            <p class="type-body profile-text">A qualified solicitor with over fifteen years of international legal experience spanning corporate, commercial, intellectual property, and private international law. Ramzi advises individuals and businesses operating across jurisdictions, bringing clarity and precision to complex legal matters. He practises in English and French.</p>
+            <div class="profile-credentials">
+              <span class="credential-tag">SRA Regulated (No. 827663)</span>
+              <span class="credential-tag">LLM Distinction, City Law School</span>
+              <span class="credential-tag">Herbert Smith Prize</span>
+              <span class="credential-tag">Relativity Certified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section section" aria-labelledby="cta-heading">
       <div class="wrap">
@@ -791,7 +835,7 @@ a:hover { color: var(--teal-hover); }
           <h2 id="cta-heading" class="type-section">Discuss your legal needs</h2>
           <p class="type-body">All initial enquiries are handled with confidentiality and without obligation. The firm advises in English and French.</p>
           <div class="hero-cta-group hero-cta-group">
-            <a href="contact.html" class="btn btn-primary" aria-label="Book a consultation with AZ Legal Solutions">Book a Consultation</a>
+            <a href="https://calendly.com/az-legalsolutions" target="_blank" rel="noopener" class="btn btn-primary">Book a Consultation</a>
             <a href="https://wa.me/447766945437" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="Contact AZ Legal Solutions on WhatsApp">WhatsApp</a>
           </div>
         </div>
