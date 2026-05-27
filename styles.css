@@ -188,6 +188,14 @@ a:hover { color: var(--teal-hover); }
   padding-top: 120px; overflow: hidden;
   background: var(--bg-hero);
 }
+.hero-image {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('images/hero-office.png') center/cover no-repeat;
+}
+.hero-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(15,42,54,0.75) 0%, rgba(15,42,54,0.6) 50%, var(--bg-content) 100%);
+}
 .hero-bg {
   position: absolute; inset: 0; z-index: 1;
   background:
@@ -478,6 +486,11 @@ a:hover { color: var(--teal-hover); }
   top: -200px; left: -100px; pointer-events: none;
 }
 .profile-strip::after { display: none; }
+.profile-photo {
+  width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--glass-border); margin: 0 auto var(--s-md);
+  box-shadow: var(--shadow-card);
+}
 .profile-inner {
   display: grid; grid-template-columns: 1fr; gap: var(--s-lg);
   text-align: center; position: relative; z-index: 1;
@@ -487,3 +500,12 @@ a:hover { color: var(--teal-hover); }
 .profile-title { font: 400 0.875rem var(--f-head); color: var(--teal); margin-bottom: var(--s-md); }
 .profile-text { margin-bottom: var(--s-md); }
 .profile-credentials { display: flex; flex-wrap: wrap; gap: var(--s-xs); justify-content: center; }
+
+
+/* --- TAGLINE ---------------------------------------------- */
+.hero-tagline {
+  font: 500 0.8125rem var(--f-head);
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--teal); margin-top: var(--s-lg);
+  opacity: 0.9;
+}
