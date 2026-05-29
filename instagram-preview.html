@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AZ Legal Solutions — Instagram preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-hero: #0F2A36;
+      --bg-content: #132F3C;
+      --bg-recessed: #0C2430;
+      --bg-deep: #080E14;
+      --accent: #C43050;
+      --accent-light: #E07A8F;
+      --teal: #5A9A8A;
+      --text-bright: #F0F4F2;
+      --text-body: #B8D4CC;
+      --text-muted: #7FA69C;
+      --glass-border: rgba(255,255,255,0.10);
+      --f-head: 'DM Sans', sans-serif;
+      --f-body: 'Source Serif 4', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--f-body);
+      background: #1a1a1a;
+      color: var(--text-body);
+      padding: 64px 32px 96px;
+      min-height: 100vh;
+    }
+    .page-header {
+      max-width: 1200px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font: 600 clamp(1.5rem, 3vw, 2.25rem)/1.2 var(--f-head);
+      color: var(--text-bright);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .page-header p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto 96px;
+    }
+    .section-title {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 24px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .section-note {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 16px;
+      max-width: 640px;
+    }
+
+    /* ------ Profile mockup ------ */
+    .profile-mock {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      padding: 32px;
+      background: #000;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 920px;
+    }
+    .avatar {
+      width: 168px; height: 168px; flex-shrink: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(90,154,138,0.20) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(196,48,80,0.10) 0%, transparent 60%),
+        var(--bg-hero);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+    .avatar svg { width: 88px; height: auto; color: var(--accent); }
+    .profile-info { flex: 1; padding-top: 12px; }
+    .profile-handle {
+      font: 400 1.5rem/1 var(--f-head);
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .profile-stats {
+      display: flex; gap: 36px;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 0.9375rem;
+    }
+    .profile-stats span b { font-weight: 600; }
+    .profile-name {
+      color: #fff;
+      font: 600 0.9375rem/1.4 var(--f-head);
+      margin-bottom: 4px;
+    }
+    .profile-bio {
+      color: #c7c7c7;
+      font: 400 0.9375rem/1.5 var(--f-head);
+      max-width: 420px;
+    }
+    .profile-bio .accent { color: var(--accent-light); }
+
+    /* ------ Feed grid ------ */
+    .feed {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .post {
+      aspect-ratio: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+    /* Variant: Brand mark */
+    .post-brand {
+      background:
+        radial-gradient(ellipse at 30% 25%, rgba(90,154,138,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse at 75% 80%, rgba(196,48,80,0.10) 0%, transparent 55%),
+        linear-gradient(180deg, #102E3A 0%, #0C2430 100%);
+      justify-content: center;
+      align-items: center;
+    }
+    .post-brand .monogram {
+      font: 600 clamp(3rem, 9vw, 6rem)/0.9 var(--f-head);
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .post-brand .lockup {
+      font: 500 0.75rem/1 var(--f-head);
+      color: var(--text-body);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+
+    /* Variant: Service announcement (with accent corner) */
+    .post-service {
+      background: var(--bg-content);
+      color: var(--text-bright);
+    }
+    .post-service::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(196,48,80,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(90,154,138,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .post-service .label {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 14px;
+      padding-left: 10px;
+      border-left: 2px solid var(--accent);
+      position: relative; z-index: 1;
+    }
+    .post-service .headline {
+      font: 400 clamp(1.125rem, 2.8vw, 1.875rem)/1.2 var(--f-body);
+      letter-spacing: -0.01em;
+      max-width: 88%;
+      position: relative; z-index: 1;
+    }
+
+    /* Variant: Quote / testimonial */
+    .post-quote {
+      background: var(--bg-recessed);
+      color: var(--text-bright);
+    }
+    .post-quote .mark {
+      font: 400 clamp(3rem, 8vw, 6rem)/0.6 var(--f-body);
+      color: var(--accent);
+      opacity: 0.35;
+      position: absolute;
+      top: 16px; left: 24px;
+    }
+    .post-quote blockquote {
+      font: italic 400 clamp(0.875rem, 1.8vw, 1.125rem)/1.55 var(--f-body);
+      color: var(--text-bright);
+      max-width: 90%;
+      position: relative; z-index: 1;
+      margin-bottom: 16px;
+    }
+    .post-quote .attribution {
+      font: 400 0.6875rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* Variant: Big stat */
+    .post-stat {
+      background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-recessed) 100%);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .post-stat .stat-number {
+      font: 600 clamp(3rem, 11vw, 7rem)/1 var(--f-head);
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .post-stat .stat-label {
+      font: 400 0.6875rem/1.4 var(--f-head);
+      color: var(--text-body);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      margin-top: 16px;
+      max-width: 70%;
+    }
+
+    /* Variant: Languages */
+    .post-langs {
+      background: var(--bg-content);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .post-langs::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(196,48,80,0.10) 0%, transparent 65%);
+    }
+    .post-langs .langs-row {
+      display: flex; gap: clamp(8px, 1.5vw, 16px);
+      position: relative; z-index: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .post-langs .pill {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: clamp(8px, 1vw, 12px) clamp(10px, 1.4vw, 16px);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+    }
+    .post-langs .langs-caption {
+      font: 400 0.6875rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-top: 18px;
+      position: relative; z-index: 1;
+    }
+
+    /* Variant: Founder portrait + name overlay */
+    .post-founder {
+      background: linear-gradient(180deg, #1a3a48 0%, #0C2430 100%);
+      color: var(--text-bright);
+    }
+    .post-founder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 90%, rgba(0,0,0,0.4) 0%, transparent 60%);
+    }
+    .post-founder .label {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+    .post-founder .name {
+      font: 600 clamp(1.25rem, 3vw, 2rem)/1.1 var(--f-head);
+      color: #fff;
+      position: relative; z-index: 1;
+    }
+    .post-founder .role {
+      font: 400 0.8125rem/1.4 var(--f-head);
+      color: var(--text-muted);
+      margin-top: 6px;
+      position: relative; z-index: 1;
+    }
+
+    /* Variant: Cross-border map mark */
+    .post-crossborder {
+      background: var(--bg-hero);
+      color: var(--text-bright);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .post-crossborder::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      width: 80%; height: 1px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
+      opacity: 0.5;
+    }
+    .post-crossborder .place {
+      font: 500 clamp(1.125rem, 2.4vw, 1.5rem)/1 var(--f-head);
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .post-crossborder .place + .place { margin-top: 16px; }
+    .post-crossborder .between {
+      font: 400 0.625rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin: 8px 0;
+    }
+
+    /* Variant: Carousel cover */
+    .post-carousel {
+      background: var(--bg-content);
+      color: var(--text-bright);
+    }
+    .post-carousel .num {
+      font: 700 clamp(2.5rem, 6vw, 4.5rem)/0.9 var(--f-head);
+      color: var(--accent);
+      opacity: 0.25;
+      letter-spacing: -0.04em;
+    }
+    .post-carousel .label {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-top: -8px;
+      margin-bottom: 12px;
+    }
+    .post-carousel .headline {
+      font: 400 clamp(1rem, 2.3vw, 1.5rem)/1.25 var(--f-body);
+      color: var(--text-bright);
+      max-width: 92%;
+    }
+    .post-carousel .swipe {
+      position: absolute;
+      bottom: 18px; right: 22px;
+      font: 500 0.625rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* Variant: Bold tagline */
+    .post-tagline {
+      background:
+        radial-gradient(ellipse at 25% 100%, rgba(90,154,138,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 0%, rgba(196,48,80,0.08) 0%, transparent 55%),
+        var(--bg-deep);
+      color: var(--text-bright);
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .post-tagline .tag-line {
+      font: 400 clamp(1.25rem, 3.2vw, 2.25rem)/1.15 var(--f-body);
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 80%;
+    }
+    .post-tagline .tag-line + .tag-line {
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .post-tagline .signature {
+      position: absolute;
+      bottom: 22px; right: 26px;
+      font: 500 0.625rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* ------ Story mockup ------ */
+    .stories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+    .story {
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 24px;
+    }
+    .story-1 {
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(90,154,138,0.22) 0%, transparent 65%),
+        linear-gradient(180deg, #102E3A 0%, #0C2430 100%);
+      color: var(--text-bright);
+    }
+    .story-1 .top {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .story-1 .headline {
+      font: 400 1.625rem/1.2 var(--f-body);
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .story-1 .bottom {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .story-1 .cta {
+      font: 500 0.75rem/1 var(--f-head);
+      color: #fff;
+      background: var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      align-self: flex-start;
+    }
+
+    .story-2 {
+      background: var(--bg-deep);
+      color: var(--text-bright);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .story-2 .monogram {
+      font: 600 6rem/1 var(--f-head);
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .story-2 .lockup {
+      font: 500 0.625rem/1.5 var(--f-head);
+      color: var(--text-body);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+    .story-2 .lockup span { display: block; }
+    .story-2 .lockup .clear {
+      color: var(--text-muted);
+      margin-top: 16px;
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+    }
+
+    .story-3 {
+      background: var(--bg-content);
+      color: var(--text-bright);
+      justify-content: flex-end;
+    }
+    .story-3::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(196,48,80,0.12) 0%, transparent 60%);
+    }
+    .story-3 .quote-mark {
+      font: 400 5rem/0.6 var(--f-body);
+      color: var(--accent);
+      opacity: 0.4;
+      position: absolute;
+      top: 36px; left: 24px;
+    }
+    .story-3 .q {
+      font: italic 400 1.0625rem/1.5 var(--f-body);
+      color: var(--text-bright);
+      position: relative; z-index: 1;
+      max-width: 95%;
+      margin-bottom: 18px;
+    }
+    .story-3 .attr {
+      font: 400 0.625rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .story-4 {
+      background: linear-gradient(180deg, var(--bg-recessed) 0%, var(--bg-deep) 100%);
+      color: var(--text-bright);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .story-4 .stat {
+      font: 600 5.5rem/1 var(--f-head);
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .story-4 .stat-caption {
+      font: 400 0.6875rem/1.5 var(--f-head);
+      color: var(--text-body);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      margin-top: 14px;
+      max-width: 80%;
+    }
+    .story-4 .signature {
+      position: absolute;
+      bottom: 24px; left: 0; right: 0;
+      font: 500 0.625rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      text-align: center;
+    }
+
+    /* Highlights ---- */
+    .highlights {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .highlight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .highlight-cover {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(90,154,138,0.16) 0%, transparent 60%),
+        var(--bg-hero);
+      border: 2px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .highlight-cover.alt {
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(196,48,80,0.18) 0%, transparent 60%),
+        var(--bg-recessed);
+    }
+    .highlight-cover svg { width: 36px; height: 36px; color: var(--accent); }
+    .highlight-label {
+      font: 500 0.6875rem/1 var(--f-head);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* Notes legend ---- */
+    .legend {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--bg-content);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .legend h2 {
+      font: 600 1rem/1.2 var(--f-head);
+      color: var(--text-bright);
+      margin-bottom: 16px;
+    }
+    .legend ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .legend li {
+      font-size: 0.875rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+    .legend li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 32px 16px 64px; }
+      .profile-mock { flex-direction: column; gap: 24px; padding: 24px; }
+      .avatar { width: 96px; height: 96px; }
+      .avatar svg { width: 48px; }
+      .profile-stats { gap: 20px; font-size: 0.8125rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>AZ Legal Solutions — Instagram concept</h1>
+    <p>How the existing palette, typography and brand mark translate to an Instagram profile, a 9-post feed grid, four story templates and a row of highlight icons. All mocked in HTML/CSS so it's straightforward to iterate or hand off to a designer.</p>
+  </header>
+
+  <!-- Profile -->
+  <section class="section">
+    <h2 class="section-title">Profile</h2>
+    <div class="profile-mock">
+      <div class="avatar">
+        <svg viewBox="215 100 250 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 225 290 L 288 120 L 302 120 L 365 290 L 335 290 L 295 178 L 255 290 Z" fill="currentColor"/>
+          <path d="M 345 120 L 455 120 L 455 145 L 370 265 L 455 265 L 455 290 L 345 290 L 345 265 L 430 145 L 345 145 Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="profile-info">
+        <p class="profile-handle">azlegalsolutions</p>
+        <div class="profile-stats">
+          <span><b>48</b> posts</span>
+          <span><b>1,240</b> followers</span>
+          <span><b>312</b> following</span>
+        </div>
+        <p class="profile-name">AZ Legal Solutions</p>
+        <p class="profile-bio">
+          Cross-border legal counsel · London<br>
+          IP · Corporate · Contracts · Translation<br>
+          <span class="accent">EN · FR · AR</span> — Clear advice. Better outcomes.<br>
+          az-legalsolutions.co.uk
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feed -->
+  <section class="section">
+    <h2 class="section-title">Feed grid (9 posts, 1080 × 1080)</h2>
+    <div class="feed">
+
+      <div class="post post-brand">
+        <div class="monogram">AZ</div>
+        <div class="lockup">Legal Solutions</div>
+      </div>
+
+      <div class="post post-service">
+        <p class="label">Practice area</p>
+        <p class="headline">Protecting what you create, build, and own.</p>
+      </div>
+
+      <div class="post post-stat">
+        <div>
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years of international practice</div>
+        </div>
+      </div>
+
+      <div class="post post-quote">
+        <div class="mark">&ldquo;</div>
+        <blockquote>His knowledge of intellectual property law is first-class.</blockquote>
+        <p class="attribution">Client — IP dispute</p>
+      </div>
+
+      <div class="post post-founder">
+        <p class="label">Counsel</p>
+        <p class="name">Ramzi El Azzi</p>
+        <p class="role">SRA-regulated · LLM Distinction, City</p>
+      </div>
+
+      <div class="post post-langs">
+        <div>
+          <div class="langs-row">
+            <span class="pill">English</span>
+            <span class="pill">Français</span>
+            <span class="pill">العربية</span>
+          </div>
+          <p class="langs-caption">Three languages, one cabinet</p>
+        </div>
+      </div>
+
+      <div class="post post-crossborder">
+        <div>
+          <p class="place">London</p>
+          <p class="between">cross-border</p>
+          <p class="place">International</p>
+        </div>
+      </div>
+
+      <div class="post post-carousel">
+        <p class="num">01</p>
+        <p class="label">Carousel</p>
+        <p class="headline">Five things to know before signing a supplier contract.</p>
+        <p class="swipe">Swipe →</p>
+      </div>
+
+      <div class="post post-tagline">
+        <div>
+          <p class="tag-line">Clear advice.</p>
+          <p class="tag-line">Better outcomes.</p>
+        </div>
+        <p class="signature">AZ Legal Solutions</p>
+      </div>
+
+    </div>
+    <p class="section-note">The grid is designed to read as a system, not nine isolated posts: brand mark in the centre and corners, alternating high-contrast and quiet posts, the cranberry accent reappearing at deliberate intervals rather than every tile.</p>
+  </section>
+
+  <!-- Stories -->
+  <section class="section">
+    <h2 class="section-title">Stories &amp; reels covers (1080 × 1920)</h2>
+    <div class="stories">
+
+      <div class="story story-1">
+        <p class="top">New article</p>
+        <p class="headline">Cross-border inheritance: where UK probate meets international law.</p>
+        <div class="bottom">
+          <p style="font: 400 0.75rem/1.4 var(--f-head); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.18em;">Read on the journal</p>
+          <span class="cta">Read now →</span>
+        </div>
+      </div>
+
+      <div class="story story-2">
+        <div style="text-align: center;">
+          <div class="monogram">AZ</div>
+          <div class="lockup">
+            <span>Legal</span>
+            <span>Solutions</span>
+            <span class="clear">Clear advice. Better outcomes.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story story-3">
+        <div class="quote-mark">&ldquo;</div>
+        <div>
+          <p class="q">He cut through the confusion immediately and protected our brand without the drawn-out process I had feared.</p>
+          <p class="attr">Client — trademark dispute</p>
+        </div>
+      </div>
+
+      <div class="story story-4">
+        <div>
+          <div class="stat">3</div>
+          <div class="stat-caption">Languages of legal practice</div>
+        </div>
+        <p class="signature">English · Français · العربية</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section">
+    <h2 class="section-title">Highlight covers</h2>
+    <div class="highlights">
+      <div class="highlight">
+        <div class="highlight-cover">
+          <svg viewBox="215 100 250 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 225 290 L 288 120 L 302 120 L 365 290 L 335 290 L 295 178 L 255 290 Z" fill="currentColor"/>
+            <path d="M 345 120 L 455 120 L 455 145 L 370 265 L 455 265 L 455 290 L 345 290 L 345 265 L 430 145 L 345 145 Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="highlight-label">About</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover alt">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="highlight-label">IP</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        </div>
+        <span class="highlight-label">Contracts</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover alt">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <span class="highlight-label">Cross-border</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.5 3-6 7-6s7 2.5 7 6"/><path d="M16 11l2 2 4-4"/></svg>
+        </div>
+        <span class="highlight-label">Counsel</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover alt">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/><path d="M19 17l3 3-3 3"/></svg>
+        </div>
+        <span class="highlight-label">Translation</span>
+      </div>
+      <div class="highlight">
+        <div class="highlight-cover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="highlight-label">Book</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notes -->
+  <section class="section">
+    <h2 class="section-title">Notes for execution</h2>
+    <div class="legend">
+      <h2>What translates well, what needs care</h2>
+      <ul>
+        <li><b>Palette and type stay identical.</b> Cranberry #C43050 as the accent (used sparingly, never as the dominant background), petrol blue #0F2A36 / #132F3C as the ground, Source Serif 4 for headlines that need to feel editorial, DM Sans for labels and UI.</li>
+        <li><b>Brand mark is the anchor.</b> The AZ monogram appears as the profile picture, the centre tile of the grid, and the cover of any "About" highlight. It is the one element that should never change colour or face direction.</li>
+        <li><b>Quotes get the editorial treatment.</b> Italic Source Serif 4, a faint cranberry quote-mark in the corner, attribution in tiny tracked DM Sans — same recipe as the website's testimonials section. Easy to template.</li>
+        <li><b>Don't repeat the wall-logo photograph.</b> On the website it's a hero asset; on Instagram it would compete with the AZ monogram and the brand mark would lose force. Reserve photography for behind-the-scenes / event reels.</li>
+        <li><b>Arabic posts need their own typography.</b> Tajawal for headlines, Noto Naskh Arabic for body, mirrored layout (right-aligned, RTL flex). The pillar tile in this concept hints at it via the العربية pill.</li>
+        <li><b>Production:</b> these are HTML mockups, not 1080 × 1080 PNGs. For real posts, export each tile as a square PNG/JPG from Figma using the same colour and type tokens, or have the designer recreate them from this spec.</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
